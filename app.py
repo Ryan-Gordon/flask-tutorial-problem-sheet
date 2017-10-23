@@ -4,6 +4,14 @@ import requests #Requests used to handle HTTP requests
 import json #Requests used to handle json manipulation 
 app = Flask(__name__)
 
+
+''' 
+Commands to run the flask app : 
+export FLASK_APP=hello.py
+
+flask run
+'''
+
 '''
 A template for how a route is defined. 
 Routes need a annotation stating what route will call the function
@@ -29,14 +37,8 @@ def http_example(path):
     # Pull JSON market data from Poloniex
     r = requests.get('https://api.coinmarketcap.com/v1/ticker/'+path+'/')
     data = r.json() # Gather the json data
-   
+    #Notice the lack of status code, we always return 200 here, unless internal error. NOT REST
     return json.dumps(data)
-    # end function
+    
 
 
-''' Commands to run the flask app : 
-
-export FLASK_APP=hello.py
-
-flask run
-'''
